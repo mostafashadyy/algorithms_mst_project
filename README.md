@@ -140,6 +140,23 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 | Karger’s         | 0.00s          | O(V * V)        | 68702176321   | 879.6        | [Karger Video](https://github.com/mostafashadyy/algorithms_project/blob/main/5_dataset_karger.mp4) |
 
 
-### Computational Cost Growth
+### Computational Cost vs. Network Size: MST Algorithm Cost Graph
 
 The computational cost of each MST algorithm was empirically tested by running the algorithms on networks of varying sizes. The performance was measured in terms of execution time, and the results were plotted to show how the cost grows as the number of nodes and edges increases. All growth curves are presented in a single plot with appropriate legends to allow easy comparison between the algorithms.
+
+---
+
+![Kruskal Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/kruskal_graph.png)
+
+
+![Prim Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/prim_graph.png)
+
+
+![Boruvka Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/boruvka_graph.png)
+
+
+![Reverse Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/reverse_graph.png)
+
+
+![Karger Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/karger_graph.png)
+
