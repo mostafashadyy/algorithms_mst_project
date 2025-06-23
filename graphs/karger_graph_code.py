@@ -4,10 +4,10 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 # Data for Karger
-datasets = ['USAir97', 'G13', 'Trefethel_2000', 'LHR04C', 'amazon-2008']
-nodes = np.array([332, 800, 2000, 4100, 735300])
-edges = np.array([2100, 1600, 21953, 82600, 5200000])
-costs = np.array([110224, 640000, 4000000, 16810000, 5.4066609e11])
+datasets = ['USAir97', 'G13', 'Trefethel-2000', 'LHR04C', 'amazon0302']
+nodes = np.array([332, 800, 2000, 4101, 262111])
+edges = np.array([2126, 1600, 21953, 82682, 1234877])
+costs = np.array([110224, 640000, 4000000, 16818201, 68702176321])
 
 log_nodes = np.log10(nodes)
 log_edges = np.log10(edges)
@@ -23,7 +23,7 @@ for i in range(len(datasets)):
 ax.set_xlabel('log(Number of Nodes)', labelpad=10)
 ax.set_ylabel('log(Number of Edges)', labelpad=10)
 ax.set_zlabel('log(Computational Cost)', labelpad=0)
-ax.set_title("Empirical Runtime Growth of Karger’s Algorithm O(V * V):\nNodes vs Edges and Cost", pad=20)
+ax.set_title("Empirical Runtime Growth of Karger’s Algorithm: O(V * V)\nNodes vs Edges and Cost", pad=20)
 ax.legend()
 fig.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.05)
 plt.show()

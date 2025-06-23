@@ -4,10 +4,10 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 # Data
-datasets = ['USAir97', 'G13', 'Trefethel-2000', 'LHR04C', 'amazon-2008']
-nodes = np.array([332, 800, 2000, 4100, 735300])
-edges = np.array([2100, 1600, 21953, 82600, 5200000])
-costs = np.array([23175.96, 17030.17, 31609.03, 1349176.35, 116012417.00])
+datasets = ['USAir97', 'G13', 'Trefethel-2000', 'LHR04C', 'amazon0302']
+nodes = np.array([332, 800, 2000, 4101, 262111])
+edges = np.array([2126, 1600, 21953, 82682, 1234877])
+costs = np.array([23500.64, 17030.17, 31609.03, 1350634.09, 249988891.84])
 
 # Take logs
 log_nodes = np.log10(nodes)
@@ -30,7 +30,7 @@ for i in range(len(datasets)):
 ax.set_xlabel('log(Number of Nodes)', labelpad=10)
 ax.set_ylabel('log(Number of Edges)', labelpad=10)
 ax.set_zlabel('log(Computational Cost)', labelpad=0)
-ax.set_title("Empirical Runtime Growth of Kruskal’s Algorithm O(E log E):\nNodes vs Edges and Cost", pad=20)
+ax.set_title("Empirical Runtime Growth of Kruskal’s Algorithm: O(E log E) \nNodes vs Edges and Cost", pad=20)
 
 # Show legend
 ax.legend()
