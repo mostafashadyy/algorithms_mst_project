@@ -81,8 +81,6 @@ In this project, we implemented and tested five classical algorithms to construc
 5. **Karger’s Algorithm**:
    Karger’s algorithm is a **randomized** approach that contracts edges randomly, reducing the graph size until only two nodes remain. The remaining edges between these nodes form a minimum cut. This algorithm is particularly used for approximating minimum cuts in large networks.
 
-### Video Visualization
-
 # Minimum Spanning Tree (MST) Algorithms - Results
 
 ## Execution Time, Complexity, and Total Weight for Each Algorithm
