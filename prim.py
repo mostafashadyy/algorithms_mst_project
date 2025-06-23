@@ -45,6 +45,12 @@ def load_graph(file_path):
     # Load the graph data from a .mtx file
     data = mmread(file_path).toarray()  # Load matrix as a dense array
     G = nx.from_numpy_array(data)  # Convert to NetworkX graph (from numpy array)
+
+    # Modify edge weights: if weight is negative, change it to a positive value
+    for u, v, data in G.edges(data=True):
+        if data['weight'] < 0:
+            data['weight'] += 1.5  # Adjust negative weight to positive + 1.5
+
     return G
 
 # Main function for animation and video creation
@@ -133,8 +139,8 @@ if __name__ == "__main__":
     # List of file paths for multiple datasets
     file_paths = [
         "USAir97.mtx",  # First file
-        "TF14.mtx",  # Second file
-        "ex13.mtx",  # Third file
+        "G13.mtx",  # Second file
+        "pcb1000.mtx",  # Third file
         "lhr04c.mtx",  # Fourth file
         "amazon0302.mtx"  # Fifth file
     ]
