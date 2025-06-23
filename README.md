@@ -93,9 +93,9 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 
 | Algorithm        | Execution Time | Time Complexity |               | Total Weight | Video |
 |------------------|----------------|-----------------|---------------|--------------|-------|
-| Kruskal’s        | 0.002102       | O(E log E)      | 23500.64      | 6.116        | [Kruskal Video](https://github.com/mostafashaddy/algorithms_project/blob/main/1_dataset_kruskal.mp4) |
+| Kruskal’s        | 0.002102s      | O(E log E)      | 23500.64      | 6.116        | [Kruskal Video](https://github.com/mostafashaddy/algorithms_project/blob/main/1_dataset_kruskal.mp4) |
 | Prim’s           | 0.005262s      | O(E log V)      | 17805.33      | 6.116        | [Prim Video](https://github.com/mostafashadyy/algorithms_project/blob/main/1_dataset_prim.mp4) |
-| Borůvka’s        | 105.71s        | O(E log V)      | 17805.33      | 6.116        | [Borůvka Video](https://github.com/mostafashadyy/algorithms_project/blob/main/1_dataset_boruvka.mp4) |
+| Borůvka’s        | 0.002550s      | O(E log V)      | 17805.33      | 6.116        | [Borůvka Video](https://github.com/mostafashadyy/algorithms_project/blob/main/1_dataset_boruvka.mp4) |
 | Reverse-Delete   | 102.48s        | O(E * V)        | 705832.00     | 6.116        | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_project/blob/main/1_dataset_reverse_delete.mp4) |
 | Karger’s         | 373.69s        | O(V * V)        | 110224.00     | 0.022        | [Karger Video](https://github.com/mostafashadyy/algorithms_project/blob/main/1_dataset_karger.mp4) |
 
@@ -104,9 +104,9 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 | Algorithm        | Execution Time | Time Complexity |               | Total Weight | Video |
 |------------------|----------------|-----------------|---------------|--------------|-------|
 | Kruskal’s        | 0.002390s      | O(E log E)      | 17030.17      | 418.4        | [Kruskal Video](https://github.com/mostafashaddy/algorithms_project/blob/main/2_dataset_kruskal.mp4) |
-| Prim’s           | 0.001642       | O(E log V)      | 15430.17      | 392.7        | [Prim Video](https://github.com/mostafashadyy/algorithms_project/blob/main/2_dataset_prim.mp4) |
-| Borůvka’s        | 706.69         | O(E log V)      | 15430.17      | 400.2        | [Borůvka Video](https://github.com/mostafashadyy/algorithms_project/blob/main/2_dataset_boruvka.mp4) |
-| Reverse-Delete   | 728.56         | O(E * V)        | 1280000.00    | 386.5        | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_project/blob/main/2_dataset_reverse_delete.mp4) |
+| Prim’s           | 0.001642s      | O(E log V)      | 15430.17      | 392.7        | [Prim Video](https://github.com/mostafashadyy/algorithms_project/blob/main/2_dataset_prim.mp4) |
+| Borůvka’s        | 0.018752s      | O(E log V)      | 15430.17      | 400.2        | [Borůvka Video](https://github.com/mostafashadyy/algorithms_project/blob/main/2_dataset_boruvka.mp4) |
+| Reverse-Delete   | 728.56s        | O(E * V)        | 1280000.00    | 386.5        | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_project/blob/main/2_dataset_reverse_delete.mp4) |
 | Karger’s         | 1093.45s       | O(V * V)        | 640000.00     | 377.3        | [Karger Video](https://github.com/mostafashadyy/algorithms_project/blob/main/2_dataset_karger.mp4) |
 
 #### 3. **Trefethen‑2000**
