@@ -90,7 +90,7 @@ def create_mst_video(file_path, output_video="kruskal_mst_video.mp4"):
     pos = nx.kamada_kawai_layout(G)  # Layout for nodes
     
     # Calculate the computational cost (empirical complexity)
-    computational_cost = len(G.edges) * np.log(len(G.edges))  # Example of cost based on edges
+    computational_cost = len(G.edges) * np.log2(len(G.edges))  # Example of cost based on edges
     print(f"Computational cost (empirical complexity): {computational_cost}")
     
     # Function to update the animation frame (with computational cost passed in)
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     file_paths = [
         "USAir97.mtx",  # First file
         "G13.mtx",  # Second file
-        "pcb1000.mtx",  # Third file
+        "Trefethen_2000.mtx",  # Third file
         "lhr04c.mtx",  # Fourth file
         "amazon0302.mtx"  # Fifth file
     ]

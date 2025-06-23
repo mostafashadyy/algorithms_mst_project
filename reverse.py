@@ -124,7 +124,7 @@ if __name__ == "__main__":
     file_paths = [
         "USAir97.mtx",  # First file
         "G13.mtx",  # Second file
-        "pcb1000.mtx",  # Third file
+        "Trefethen_2000.mtx",  # Third file
         "lhr04c.mtx",  # Fourth file
         "amazon0302.mtx"  # Fifth file
     ]
