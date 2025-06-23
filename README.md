@@ -43,7 +43,7 @@ Below are the datasets chosen from the **Miscellaneous Networks** category, each
      - **Market Analysis**: Helps in understanding market dynamics and identifying the key players or institutions that drive the economy.
 
 #### 5. **Amazon0302**
-   - **Link**: [Amazon-2008 Dataset](https://networkrepository.com/amazon0302.php)
+   - **Link**: [Amazon0302 Dataset](https://networkrepository.com/amazon0302.php)
    - **Description**: The Amazon-2008 network represents the co-purchase network of products from Amazon, where nodes represent products and edges represent products that are often bought together.
    - **Applications**: 
      - **Recommendation Systems**: Used for designing recommendation algorithms in e-commerce platforms, helping recommend products to users based on previous purchase patterns.
