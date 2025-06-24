@@ -4,10 +4,10 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 # Data for Boruvka
-datasets = ['USAir97', 'G13', 'Trefethel-2000', 'LHR04C', 'amazon0302']
-nodes = np.array([332, 800, 2000, 4101, 262111])
-edges = np.array([2126, 1600, 21953, 82682, 1234877])
-costs = np.array([17805.33, 15430.17, 240731.86, 992329.52, 22227561.72])
+datasets = ['USAir97', 'G13', 'lock2232', 'LHR04C', 'amazon0302']
+nodes = np.array([332, 800, 2232, 4101, 262111])
+edges = np.array([2126, 1600, 41280, 82682, 1234877])
+costs = np.array([17805.33, 15430.17, 459203.73, 992329.52, 22227561.72])
 
 log_nodes = np.log10(nodes)
 log_edges = np.log10(edges)
@@ -27,5 +27,3 @@ ax.set_title("Empirical Runtime Growth of Borůvka’s Algorithm:  O(E log V)\nN
 ax.legend()
 fig.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.05)
 plt.show()
-
-

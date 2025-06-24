@@ -128,7 +128,7 @@ def create_mst_video(file_path, output_video="kruskal_mst_video.mp4"):
     with tqdm(total=total_frames, desc="Rendering frames", ncols=100, unit="frame") as pbar:
         with writer.saving(fig, output_video, dpi=100):
             for i in range(total_frames):
-                update(i, start_time_algorithm, computational_cost)
+                update(i, computational_cost, algorithm_execution_time)
                 writer.grab_frame()
                 pbar.update(1)
     
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     file_paths = [
         "USAir97.mtx",  # First file
         "G13.mtx",  # Second file
-        "Trefethen_2000.mtx",  # Third file
+        "lock2232.mtx",  # Third file
         "lhr04c.mtx",  # Fourth file
         "amazon0302.mtx"  # Fifth file
     ]
