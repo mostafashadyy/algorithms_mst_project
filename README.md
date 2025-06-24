@@ -26,13 +26,13 @@ Below are the datasets chosen from the **Miscellaneous Networks** category, each
      - **Travel Planning**: Helps in evaluating the most cost-effective flight paths and optimizing travel itineraries for passengers and cargo.
      - **Disaster Recovery Planning**: Analyzes the resilience of global airport networks and their response to disruptions.
 
-#### 3. **Trefethen‑2000**
-   - **Link**: [Trefethen‑2000 Dataset](https://networkrepository.com/Trefethen-2000.php)
-   - **Description**: This graph represents a benchmark scientific network named after Lloyd N. Trefethen's influential 2000 work. While not representing real-world connectivity (like social or transportation networks), it's typically used for testing algorithms—especially spectral and numerical methods—on medium-sized synthetically generated graphs.
+#### 3. **lock2232**
+   - **Link**: [lock2232 Dataset](https://networkrepository.com/lock2232.php)
+   - **Description**: This graph represents a structural engineering problem derived from a finite element analysis of a launch umbilical tower, contributed by W.A. Loden from Lockheed Palo Alto Research Laboratory. This symmetric, binary matrix comprises 2,232 nodes and 80,352 non-zero entries, modeling the stiffness matrix of the structure. It is commonly used as a benchmark in numerical linear algebra and graph algorithms, particularly for testing the performance of solvers on sparse, symmetric matrices.
    - **Applications**: 
-     - **Numerical & Spectral Method Testing**: Serves as a controllable benchmark for evaluating the performance of eigenvalue solvers, spectral clustering, and embedding methods in computational linear algebra.
-     - **Benchmarking Algorithm Efficiency**: Used to measure runtime, convergence, and accuracy of matrix decomposition and graph signal processing techniques.
-     - **Educational Value**: Helps students and researchers in numerical analysis and graph theory to understand the interplay between graph structure, eigen-spectra, and algorithmic stability.
+     - **Structural Engineering Analysis**: Assists in evaluating the structural integrity and load distribution of complex frameworks, such as aerospace launch towers.
+     - **Finite Element Method (FEM) Benchmarking**: Serves as a test case for FEM solvers, enabling the assessment of computational efficiency and accuracy.
+     - **Sparse Matrix Algorithm Development**: Provides a real-world example for developing and testing algorithms that handle large, sparse, symmetric matrices in scientific computing.
 
 #### 4. **LHR04C**
    - **Link**: [LHR04C Dataset](https://networkrepository.com/lhr04c.php)
