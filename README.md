@@ -113,11 +113,11 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 
 | Algorithm        | Execution Time | Time Complexity |               | Total Weight | Video |
 |------------------|----------------|-----------------|---------------|--------------|-------|
-| Kruskal’s        | 0.00s          | O(E log E)      | 632952.65     | 298.2        | [Kruskal Video](https://github.com/mostafashaddy/algorithms_mst_project/blob/main/3_dataset_kruskal.mp4) |
-| Prim’s           | 0.00s          | O(E log V)      | 459203.73     | 270.1        | [Prim Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_prim.mp4) |
-| Borůvka’s        | 0.00s          | O(E log V)      | 459203.73     | 285.6        | [Borůvka Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_boruvka.mp4) |
-| Reverse-Delete   | 0.00s          | O(E * V)        | 92136960      | 276.4        | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_reverse_delete.mp4) |
-| Karger’s         | 0.00s          | O(V * V)        | 4981824       | 266.2        | [Karger Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_karger.mp4) |
+| Kruskal’s        | 0.00s          | O(E log E)      | 632952.65     | 2207.0       | [Kruskal Video](https://github.com/mostafashaddy/algorithms_mst_project/blob/main/3_dataset_kruskal.mp4) |
+| Prim’s           | 0.00s          | O(E log V)      | 459203.73     | 2207.0       | [Prim Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_prim.mp4) |
+| Borůvka’s        | 0.00s          | O(E log V)      | 459203.73     | 2207.0       | [Borůvka Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_boruvka.mp4) |
+| Reverse-Delete   | 0.00s          | O(E * V)        | 92136960      | 2207.0       | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_reverse_delete.mp4) |
+| Karger’s         | 0.00s          | O(V * V)        | 4981824       | 2207.0       | [Karger Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_karger.mp4) |
 
 #### 4. **LHR04C**
 
