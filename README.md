@@ -158,5 +158,5 @@ The computational cost of each MST algorithm was empirically tested by running t
 ![Reverse Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/reverse_graph.png)
 
 
-![Karger Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/karger_graph.png)
+![Karger Graph](https://raw.githubusercontent.com/mostafashadyy/algorithms_mst_project/main/graphs/reverse_graph.png)
 
