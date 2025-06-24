@@ -113,7 +113,7 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 
 | Algorithm        | Execution Time | Time Complexity |               | Total Weight | Video |
 |------------------|----------------|-----------------|---------------|--------------|-------|
-| Kruskal’s        | 0.00s          | O(E log E)      | 31609.03      | 1999.0       | [Kruskal Video](https://github.com/mostafashaddy/algorithms_mst_project/blob/main/3_dataset_kruskal.mp4) |
+| Kruskal’s        | 0.036885s      | O(E log E)      | 31609.03      | 1999.0       | [Kruskal Video](https://github.com/mostafashaddy/algorithms_mst_project/blob/main/3_dataset_kruskal.mp4) |
 | Prim’s           | 0.051552s      | O(E log V)      | 240731.86     | 1999.0       | [Prim Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_prim.mp4) |
 | Borůvka’s        | 0.00s          | O(E log V)      | 240731.86     | 1999.0       | [Borůvka Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_boruvka.mp4) |
 | Reverse-Delete   | 22.845624s     | O(E * V)        | 43906000      | 1999.0       | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/3_dataset_reverse_delete.mp4) |
