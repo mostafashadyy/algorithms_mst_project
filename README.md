@@ -127,7 +127,7 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 | Prim’s           | 0.141027s      | O(E log V)      | 992329.52     | 252.439      | [Prim Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/4_dataset_prim.mp4) |
 | Borůvka’s        | 0.476363s      | O(E log V)      | 992329.52     | 252.439      | [Borůvka Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/4_dataset_boruvka.mp4) |
 | Reverse-Delete   | 235.314083s    | O(E * V)        | 339078882.00  | 252.439      | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/4_dataset_reverse_delete.mp4) |
-| Karger’s         | 581.106082s    | O(V * V)        | 16818201.00   | 0.00         | [Karger Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/4_dataset_karger.mp4) |
+| Karger’s         | 417.203164s    | O(V * V)        | 16818201.00   | 1.001        | [Karger Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/4_dataset_karger.mp4) |
 
 #### 5. **Amazon0302**
 
