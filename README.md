@@ -137,7 +137,7 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 | Prim’s           | 2.982875s      | O(E log V)      | 22227561.72   | 262110.0     | [Prim Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/5_dataset_prim.mp4) |
 | Borůvka’s        | 1830.109102s   | O(E log V)      | 22227561.72   | 262110.0     | [Borůvka Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/5_dataset_boruvka.mp4) |
 | Reverse-Delete   | ≈ 1060days     | O(E * V)        | 323674845347  | 262110.0     | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/5_dataset_reverse_delete.mp4) |
-| Karger’s         | ≈ 1500days     | O(V * V)        | 68702176321   | 0.00         | [Karger Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/5_dataset_karger.mp4) |
+| Karger’s         | ≈ 1500days     | O(V * V)        | 68702176321   | 1            | [Karger Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/5_dataset_karger.mp4) |
 
 
 ### Computational Cost vs. Network Size: MST Algorithm Cost Graph
