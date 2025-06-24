@@ -109,7 +109,7 @@ Below is a summary of the **execution time**, **computational complexity**, and 
 | Reverse-Delete   | 0.287114s      | O(E * V)        | 1280000.00    | 440.50       | [Reverse-Delete Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/2_dataset_reverse_delete.mp4) |
 | Karger’s         | 2.018892s      | O(V * V)        | 640000.00     | 1            | [Karger Video](https://github.com/mostafashadyy/algorithms_mst_project/blob/main/2_dataset_karger.mp4) |
 
-#### 3. **Trefethen‑2000**
+#### 3. **lock2232**
 
 | Algorithm        | Execution Time | Time Complexity |               | Total Weight | Video |
 |------------------|----------------|-----------------|---------------|--------------|-------|
