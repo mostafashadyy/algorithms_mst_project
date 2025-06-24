@@ -4,10 +4,10 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 # Data
-datasets = ['USAir97', 'G13', 'lock2232', 'LHR04C', 'amazon0302']
-nodes = np.array([332, 800, 2232, 4101, 262111])
-edges = np.array([2126, 1600, 41280, 82682, 1234877])
-costs = np.array([23500.64, 17030.17, 632952.65, 1350634.09, 249988891.84])
+datasets = ['USAir97', 'G13', 'Trefethen_2000', 'LHR04C', 'amazon0302']
+nodes = np.array([332, 800, 2000, 4101, 262111])
+edges = np.array([2126, 1600, 21953, 82682, 1234877])
+costs = np.array([23500.64, 17030.17, 31609.03, 1350634.09, 249988891.84])
 
 # Take logs
 log_nodes = np.log10(nodes)
