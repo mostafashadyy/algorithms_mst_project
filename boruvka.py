@@ -1,66 +1,62 @@
-import networkx as nx
-import matplotlib.pyplot as plt
-from matplotlib.animation import FFMpegWriter
-import time
-from tqdm import tqdm
-from scipy.io import mmread
-import numpy as np
+import networkx as nx  # used to create and manipulate graphs/networks.
+import matplotlib.pyplot as plt  # used for plotting graphs and visualizing results.
+from matplotlib.animation import FFMpegWriter  # Enables saving animations as .mp4 videos.
+import time  # used to measure execution time.
+from tqdm import tqdm  # used to show a progress bar
+from scipy.io import mmread  # mmread reads Matrix Market (.mtx) files (used for graph input).
+import numpy as np  # used for numerical operations, such as log2 and matrix conversions.
 
-# Borůvka's Algorithm to find MST
+# Boruvka's Algorithm to find MST
 def boruvka_mst(G):
-    # Initialize
-    num_components = len(G.nodes)
-    component = {node: node for node in G.nodes}  # Each node is its own component
-    mst = []
-    total_weight = 0
+    num_components = len(G.nodes)  # Start with each node as its own component
+    component = {node: node for node in G.nodes}  # Track which component each node belongs to
+    mst = []  # List to store MST edges
+    total_weight = 0  # Total weight of MST
 
-    while num_components > 1:
-        # This will store the smallest outgoing edge for each component
-        cheapest = {node: None for node in G.nodes}
+    while num_components > 1:  # Repeat until all nodes are in one component
+        cheapest = {node: None for node in G.nodes}  # Store cheapest edge for each component
 
-        # For each edge, update the smallest outgoing edge for its components
-        for u, v, weight in G.edges(data=True):
-            comp_u = component[u]
-            comp_v = component[v]
-            
-            if comp_u != comp_v:  # If the nodes are in different components
+        for u, v, weight in G.edges(data=True):  # Check all edges
+            comp_u = component[u]  # Component of u
+            comp_v = component[v]  # Component of v
+
+            if comp_u != comp_v:  # If u and v are in different components
                 if cheapest[comp_u] is None or cheapest[comp_u][2]['weight'] > weight['weight']:
-                    cheapest[comp_u] = (u, v, weight)
+                    cheapest[comp_u] = (u, v, weight)  # Update cheapest edge for u's component
                 if cheapest[comp_v] is None or cheapest[comp_v][2]['weight'] > weight['weight']:
-                    cheapest[comp_v] = (u, v, weight)
+                    cheapest[comp_v] = (u, v, weight)  # Update cheapest edge for v's component
 
-        # Add the smallest edges to the MST and merge the components
-        for comp, edge in cheapest.items():
+        for comp, edge in cheapest.items():  # Add valid cheapest edges
             if edge:
                 u, v, weight = edge
-                if component[u] != component[v]:  # If they are in different components
-                    mst.append((u, v, weight['weight']))
-                    total_weight += weight['weight']
-                    # Merge the components
-                    old_component = component[u]
-                    new_component = component[v]
-                    for node in component:
+                if component[u] != component[v]:  # Still in different components
+                    mst.append((u, v, weight['weight']))  # Add edge to MST
+                    total_weight += weight['weight']  # Add weight to total
+
+                    old_component = component[u]  # Get u's component
+                    new_component = component[v]  # Get v's component
+
+                    for node in component:  # Merge components
                         if component[node] == old_component:
                             component[node] = new_component
-                    num_components -= 1
+                    num_components -= 1  # One less component
+        cheapest = {node: None for node in G.nodes}  # Reset for next round
 
-        # Reset the cheapest list for the next iteration
-        cheapest = {node: None for node in G.nodes}
-    
-    return mst, total_weight
+    return mst, total_weight  # Return MST and total weight
 
 # Function to load the graph from a file
 def load_graph(file_path):
     # Load the graph data from a .mtx file
-    data = mmread(file_path).toarray()  # Load matrix as a dense array
+    data = mmread(file_path).toarray()  # Turns the matrix into a 2D NumPy array
     G = nx.from_numpy_array(data)  # Convert to NetworkX graph (from numpy array)
 
-    # Modify edge weights: if weight is negative, change it to a positive value
+    # Loop through all edges in the graph
     for u, v, data in G.edges(data=True):
+        # If any edge has a negative weight
         if data['weight'] < 0:
             data['weight'] += 1.5  # Adjust negative weight to positive + 1.5
-
-    return G
+            
+    return G # Return the final graph
 
 # Main function for animation and video creation
 def create_mst_video(file_path, output_video="boruvka_mst_video.mp4"):
@@ -89,28 +85,28 @@ def create_mst_video(file_path, output_video="boruvka_mst_video.mp4"):
     pos = nx.kamada_kawai_layout(G)  # Layout for nodes
     
     # Calculate the computational cost (empirical complexity)
-    computational_cost = len(G.edges) * np.log2(len(G.nodes))
+    computational_cost = len(G.edges) * np.log2(len(G.nodes)) # O(E log V)
     print(f"Computational cost (empirical complexity): {computational_cost}")
     
-    # Function to update the animation frame (with computational cost passed in)
+    # Function to update the animation frame
     def update(frame, computational_cost, algorithm_execution_time):
         ax.clear()
         ax.axis('off')
         ax.set_title(f"Borůvka's Algorithm: Step {frame + 1}/{len(mst)}", fontsize=16)
         
-        # Draw nodes (darker grey)
-        nx.draw_networkx_nodes(G, pos, ax=ax, node_size=8, node_color='#B0B0B0')  # Darker grey
+        # Draw nodes
+        nx.draw_networkx_nodes(G, pos, ax=ax, node_size=8, node_color='#B0B0B0')
         
         # Draw MST edges added so far in a darker blue
         for i in range(frame + 1):
             u, v, weight = mst[i]
-            color = '#3D5C7E'  # Darker blue for MST edges
+            color = '#3D5C7E'
             nx.draw_networkx_edges(G, pos, edgelist=[(u, v)], edge_color=color, width=2, ax=ax)
         
         # Draw remaining edges in red
         remaining_edges = mst[frame + 1:]
         for u, v, weight in remaining_edges:
-            color = 'red'  # Red for remaining edges
+            color = 'red'
             nx.draw_networkx_edges(G, pos, edgelist=[(u, v)], edge_color=color, width=0.5, ax=ax)
         
         # Add live execution time and MST cost, along with computational cost on the left of the graph
@@ -131,26 +127,24 @@ def create_mst_video(file_path, output_video="boruvka_mst_video.mp4"):
                 writer.grab_frame()
                 pbar.update(1)
     
-    print(f"✅ Video saved as '{output_video}'")
+    print(f"Video saved as '{output_video}'")
 
     return computational_cost
 
 # Main function to handle multiple datasets
 def process_multiple_files(file_paths):
     for index, file_path in enumerate(file_paths):
-        output_video = f"{index+1}_dataset_boruvka.mp4"  # Name the video based on the index
+        output_video = f"{index+1}_dataset_boruvka.mp4"
         print(f"Processing {file_path}...")
         computational_cost = create_mst_video(file_path, output_video)
         print(f"Empirical Computational Cost for {file_path}: {computational_cost}")
 
-# Example usage
 if __name__ == "__main__":
-    # List of file paths for multiple datasets
     file_paths = [
-        "USAir97.mtx",  # First file
-        "G13.mtx",  # Second file
-        "Trefethen_2000.mtx",  # Third file
-        "lhr04c.mtx",  # Fourth file
-        "amazon0302.mtx"  # Fifth file
+        "USAir97.mtx",
+        "G13.mtx",
+        "Trefethen_2000.mtx",
+        "lhr04c.mtx",
+        "amazon0302.mtx"
     ]
-    process_multiple_files(file_paths)  # Process all datasets
+    process_multiple_files(file_paths)

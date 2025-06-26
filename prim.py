@@ -1,57 +1,61 @@
-import networkx as nx
-import matplotlib.pyplot as plt
-from matplotlib.animation import FFMpegWriter
-import time
-from tqdm import tqdm
-from scipy.io import mmread
-import numpy as np
+import networkx as nx  # used to create and manipulate graphs/networks.
+import matplotlib.pyplot as plt  # used for plotting graphs and visualizing results.
+from matplotlib.animation import FFMpegWriter  # Enables saving animations as .mp4 videos.
+import time  # used to measure execution time.
+from tqdm import tqdm  # used to show a progress bar
+from scipy.io import mmread  # mmread reads Matrix Market (.mtx) files (used for graph input).
+import numpy as np  # used for numerical operations, such as log2 and matrix conversions.
 import heapq  # For the priority queue
 
 # Prim's Algorithm to find MST
 def prim_mst(G):
-    start_node = 0
-    visited = set([start_node])
-    mst = []
-    total_weight = 0
-    edges = []
-    seen_edges = set()
+    start_node = 0  # Start building the MST from node 0
+    visited = set([start_node])  # Keep track of nodes that are already in the MST
+    mst = []  # List to store the edges of the MST
+    total_weight = 0  # Total weight of all MST edges
+    edges = []  # Priority queue (min-heap) for available edges
+    seen_edges = set()  # Track edges we've already looked at (to avoid duplicates)
 
+    # Add all edges from the start node to the heap
     for v, edge_data in G[start_node].items():
-        edge = tuple(sorted((start_node, v)))
+        edge = tuple(sorted((start_node, v)))  # Represent the edge as a sorted tuple
         if edge not in seen_edges:
-            seen_edges.add(edge)
-            heapq.heappush(edges, (edge_data['weight'], start_node, v))
+            seen_edges.add(edge)  # Mark this edge as seen
+            heapq.heappush(edges, (edge_data['weight'], start_node, v))  # Add edge to the heap
 
+    # Keep going until we visit all nodes or run out of edges
     while edges and len(visited) < G.number_of_nodes():
-        weight, u, v = heapq.heappop(edges)
+        weight, u, v = heapq.heappop(edges)  # Get the edge with the smallest weight
         if v in visited:
-            continue
+            continue  # Skip if the destination node is already visited
 
-        visited.add(v)
-        mst.append((u, v, weight))
-        total_weight += weight
+        visited.add(v)  # Mark the new node as visited
+        mst.append((u, v, weight))  # Add this edge to the MST
+        total_weight += weight  # Add the weight to the total
 
+        # Look at all edges from the new node
         for u, edge_data in G[v].items():
-            if u not in visited:
-                edge = tuple(sorted((v, u)))
+            if u not in visited:  # Only consider edges going to unvisited nodes
+                edge = tuple(sorted((v, u)))  # Sort to avoid duplicates
                 if edge not in seen_edges:
-                    seen_edges.add(edge)
-                    heapq.heappush(edges, (edge_data['weight'], v, u))
+                    seen_edges.add(edge)  # Mark this edge as seen
+                    heapq.heappush(edges, (edge_data['weight'], v, u))  # Add edge to the heap
 
-    return mst, total_weight
+    return mst, total_weight  # Return the MST edges and the total weight
 
 # Function to load the graph from a file
 def load_graph(file_path):
     # Load the graph data from a .mtx file
-    data = mmread(file_path).toarray()  # Load matrix as a dense array
+    data = mmread(file_path).toarray()  # Turns the matrix into a 2D NumPy array
     G = nx.from_numpy_array(data)  # Convert to NetworkX graph (from numpy array)
 
-    # Modify edge weights: if weight is negative, change it to a positive value
+    # Loop through all edges in the graph
     for u, v, data in G.edges(data=True):
+        # If any edge has a negative weight
         if data['weight'] < 0:
             data['weight'] += 1.5  # Adjust negative weight to positive + 1.5
 
-    return G
+    return G # Return the final graph
 
 # Main function for animation and video creation
 def create_mst_video(file_path, output_video="prim_mst_video.mp4"):
@@ -80,28 +84,28 @@ def create_mst_video(file_path, output_video="prim_mst_video.mp4"):
     pos = nx.kamada_kawai_layout(G)  # Layout for nodes
     
     # Calculate the computational cost (empirical complexity)
-    computational_cost = len(G.edges) * np.log2(len(G.nodes))
+    computational_cost = len(G.edges) * np.log2(len(G.nodes)) # O(E log V)
     print(f"Computational cost (empirical complexity): {computational_cost}")
     
-    # Function to update the animation frame (with computational cost passed in)
+    # Function to update the animation frame
     def update(frame, computational_cost, algorithm_execution_time):
         ax.clear()
         ax.axis('off')
         ax.set_title(f"Prim's Algorithm: Step {frame + 1}/{len(mst)}", fontsize=16)
         
-        # Draw nodes (darker grey)
-        nx.draw_networkx_nodes(G, pos, ax=ax, node_size=8, node_color='#B0B0B0')  # Darker grey
+        # Draw nodes
+        nx.draw_networkx_nodes(G, pos, ax=ax, node_size=8, node_color='#B0B0B0')
         
         # Draw MST edges added so far in a darker blue
         for i in range(frame + 1):
             u, v, weight = mst[i]
-            color = '#3D5C7E'  # Darker blue for MST edges
+            color = '#3D5C7E'
             nx.draw_networkx_edges(G, pos, edgelist=[(u, v)], edge_color=color, width=2, ax=ax)
         
         # Draw remaining edges in red
         remaining_edges = mst[frame + 1:]
         for u, v, weight in remaining_edges:
-            color = 'red'  # Red for remaining edges
+            color = 'red'
             nx.draw_networkx_edges(G, pos, edgelist=[(u, v)], edge_color=color, width=0.5, ax=ax)
         
         # Add live execution time and MST cost, along with computational cost on the left of the graph
@@ -122,26 +126,24 @@ def create_mst_video(file_path, output_video="prim_mst_video.mp4"):
                 writer.grab_frame()
                 pbar.update(1)
     
-    print(f"✅ Video saved as '{output_video}'")
+    print(f"Video saved as '{output_video}'")
 
     return computational_cost
 
 # Main function to handle multiple datasets
 def process_multiple_files(file_paths):
     for index, file_path in enumerate(file_paths):
-        output_video = f"{index+1}_dataset_prim.mp4"  # Name the video based on the index
+        output_video = f"{index+1}_dataset_prim.mp4"
         print(f"Processing {file_path}...")
         computational_cost = create_mst_video(file_path, output_video)
         print(f"Empirical Computational Cost for {file_path}: {computational_cost}")
 
-# Example usage
 if __name__ == "__main__":
-    # List of file paths for multiple datasets
     file_paths = [
-        "USAir97.mtx",  # First file
-        "G13.mtx",  # Second file
-        "Trefethen_2000.mtx",  # Third file
-        "lhr04c.mtx",  # Fourth file
-        "amazon0302.mtx"  # Fifth file
+        "USAir97.mtx",
+        "G13.mtx",
+        "Trefethen_2000.mtx",
+        "lhr04c.mtx",
+        "amazon0302.mtx"
     ]
-    process_multiple_files(file_paths)  # Process all datasets
+    process_multiple_files(file_paths)

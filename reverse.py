@@ -1,45 +1,45 @@
-import networkx as nx
-import matplotlib.pyplot as plt
-from matplotlib.animation import FFMpegWriter
-import time
-from tqdm import tqdm
-from scipy.io import mmread
+import networkx as nx  # used to create and manipulate graphs/networks.
+import matplotlib.pyplot as plt  # used for plotting graphs and visualizing results.
+from matplotlib.animation import FFMpegWriter  # Enables saving animations as .mp4 videos.
+import time  # used to measure execution time.
+from tqdm import tqdm  # used to show a progress bar
+from scipy.io import mmread  # mmread reads Matrix Market (.mtx) files (used for graph input).
 
+# Reverse's Algorithm to find MST
 def reverse_delete_mst(G):
-    # Make a copy of the graph to work on
-    graph = G.copy()
-    
-    # Get all edges sorted in descending order of weight
-    edges = sorted(graph.edges(data=True), key=lambda x: -x[2].get('weight', 1))
-    
-    mst_edges = []
-    total_weight = 0
-    
-    for u, v, weight in edges:
-        # Temporarily remove the edge
-        graph.remove_edge(u, v)
-        
-        # Check if the graph is still connected
-        if not nx.is_connected(graph):
-            # If not connected, this edge must be in the MST, so add it back
-            graph.add_edge(u, v, weight=weight['weight'])
-            mst_edges.append((u, v, weight['weight']))
-            total_weight += weight['weight']
-        # Else, the edge is permanently removed
-    
-    return mst_edges, total_weight
+    graph = G.copy()  # Make a copy so we don't change the original graph
 
+    edges = sorted(graph.edges(data=True), key=lambda x: -x[2].get('weight', 1))  # Get all edges sorted in descending order of weight
+
+    mst_edges = []  # List to store edges that will be in the MST
+    total_weight = 0  # Total weight of the MST
+
+    for u, v, weight in edges:  # Go through edges from heaviest to lightest
+        graph.remove_edge(u, v)  # Try removing this edge from the graph
+
+        # Check if the graph is still connected without this edge
+        if not nx.is_connected(graph):  
+            # If it's not connected anymore, that means this edge was necessary to keep the graph connected
+            graph.add_edge(u, v, weight=weight['weight'])  # So, it's part of the MST and we must add it back
+            mst_edges.append((u, v, weight['weight']))  # Add it to MST
+            total_weight += weight['weight']  # Add its weight to total
+        # Else the graph is still connected, we leave the edge removed (it's not needed in the MST)
+
+    return mst_edges, total_weight  # Return the MST edges and total cost
+
+# Function to load the graph from a file
 def load_graph(file_path):
     # Load the graph data from a .mtx file
-    data = mmread(file_path).toarray()  # Load matrix as a dense array
+    data = mmread(file_path).toarray()  # Turns the matrix into a 2D NumPy array
     G = nx.from_numpy_array(data)  # Convert to NetworkX graph (from numpy array)
 
-    # Modify edge weights: if weight is negative, change it to a positive value
+    # Loop through all edges in the graph
     for u, v, data in G.edges(data=True):
+        # If any edge has a negative weight
         if data['weight'] < 0:
             data['weight'] += 1.5  # Adjust negative weight to positive + 1.5
-    
-    return G
+            
+    return G # Return the final graph
 
 def create_mst_video(file_path, output_video="reverse_delete_mst_video.mp4"):
     # Load graph from file
@@ -67,7 +67,7 @@ def create_mst_video(file_path, output_video="reverse_delete_mst_video.mp4"):
     pos = nx.kamada_kawai_layout(G)  # Layout for nodes
     
     # Calculate the computational cost (empirical complexity)
-    computational_cost = len(G.edges) * len(G.nodes)  # O(E*V) for connectivity checks
+    computational_cost = len(G.edges) * len(G.nodes)  # O(E*V)
     print(f"Computational cost (empirical complexity): {computational_cost}")
     
     # Function to update the animation frame
@@ -76,19 +76,19 @@ def create_mst_video(file_path, output_video="reverse_delete_mst_video.mp4"):
         ax.axis('off')
         ax.set_title(f"Reverse-Delete Algorithm: Step {frame + 1}/{len(mst)}", fontsize=16)
         
-        # Draw nodes (darker grey)
+        # Draw nodes
         nx.draw_networkx_nodes(G, pos, ax=ax, node_size=8, node_color='#B0B0B0')
         
         # Draw MST edges added so far in a darker blue
         for i in range(frame + 1):
             u, v, weight = mst[i]
-            color = '#3D5C7E'  # Darker blue for MST edges
+            color = '#3D5C7E'
             nx.draw_networkx_edges(G, pos, edgelist=[(u, v)], edge_color=color, width=2, ax=ax)
         
         # Draw remaining edges in red
         remaining_edges = mst[frame + 1:]
         for u, v, weight in remaining_edges:
-            color = 'red'  # Red for remaining edges
+            color = 'red'
             nx.draw_networkx_edges(G, pos, edgelist=[(u, v)], edge_color=color, width=0.5, ax=ax)
         
         # Add live execution time and MST cost, along with computational cost
@@ -109,7 +109,7 @@ def create_mst_video(file_path, output_video="reverse_delete_mst_video.mp4"):
                 writer.grab_frame()
                 pbar.update(1)
     
-    print(f"✅ Video saved as '{output_video}'")
+    print(f"Video saved as '{output_video}'")
 
     return computational_cost
 
@@ -122,10 +122,10 @@ def process_multiple_files(file_paths):
 
 if __name__ == "__main__":
     file_paths = [
-        "USAir97.mtx",  # First file
-        "G13.mtx",  # Second file
-        "Trefethen_2000.mtx",  # Third file
-        "lhr04c.mtx",  # Fourth file
-        "amazon0302.mtx"  # Fifth file
+        "USAir97.mtx",
+        "G13.mtx",
+        "Trefethen_2000.mtx",
+        "lhr04c.mtx",
+        "amazon0302.mtx"
     ]
-    process_multiple_files(file_paths)  # Process all datasets
+    process_multiple_files(file_paths)
